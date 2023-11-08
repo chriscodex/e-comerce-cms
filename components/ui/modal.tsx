@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -30,16 +30,24 @@ export const Modal: React.FC<ModalProps> = ({
     }
   };
 
-  return (
-    <Dialog open={isOpen} onOpenChange={onChange}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{description}</DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">{children}</div>
-      </DialogContent>
-      <div>{children}</div>
-    </Dialog>
-  );
+  const [initialRenderState, setinitialRenderState] = useState(<div></div>);
+
+  useEffect(() => {
+    const initialRender = (
+      <>
+        <Dialog open={isOpen} onOpenChange={onChange}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{title}</DialogTitle>
+              <DialogDescription>{description}</DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">{children}</div>
+          </DialogContent>
+        </Dialog>
+      </>
+    );
+    setinitialRenderState(initialRender);
+  }, []);
+
+  return initialRenderState;
 };
