@@ -16,22 +16,34 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-
-const formSchema = z.object({
-  name: z.string().min(1, 'Required'),
-});
+import { useEffect } from 'react';
 
 export function StoreModal() {
   const { isOpen, onClose } = useStoreModal();
 
+  const formSchema = z.object({
+    name: z.string().min(1, {
+      message: 'Name is required',
+    }),
+  });
+
   const form = useForm<z.infer<typeof formSchema>>({
+    // resolver: async (data, context, options) => {
+    //   // await zodResolver(formSchema)(data, context, options);
+    //   return zodResolver(formSchema)(data, context, options);
+    // },
+    // resolver: async (data, context, options) => {
+    //   console.log('validation result', await zodResolver(formSchema)(data, context, options))
+    //   return zodResolver(formSchema)(data, context, options)
+    // },
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
+      name: '',
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    
     console.log(values);
   };
 
@@ -53,7 +65,7 @@ export function StoreModal() {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="E-Comerce" {...field}/>
+                      <Input placeholder="E-Comerce" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
