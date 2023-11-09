@@ -16,10 +16,12 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export function StoreModal() {
   const { isOpen, onClose } = useStoreModal();
+
+  const [loading, setLoading] = useState(false);
 
   const formSchema = z.object({
     name: z.string().min(1, {
@@ -43,7 +45,6 @@ export function StoreModal() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    
     console.log(values);
   };
 
@@ -65,17 +66,27 @@ export function StoreModal() {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="E-Comerce" {...field} />
+                      <Input
+                        disabled={loading}
+                        placeholder="E-Comerce"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
               <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-                <Button variant={'outline'} onClick={onClose}>
+                <Button
+                  disabled={loading}
+                  variant={'outline'}
+                  onClick={onClose}
+                >
                   Cancel
                 </Button>
-                <Button type="submit">Continue</Button>
+                <Button disabled={loading} type="submit">
+                  Continue
+                </Button>
               </div>
             </form>
           </Form>
