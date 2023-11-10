@@ -16,7 +16,9 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 export function StoreModal() {
   const { isOpen, onClose } = useStoreModal();
@@ -45,7 +47,18 @@ export function StoreModal() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    try {
+      setLoading(true);
+
+      const response = await axios.post('/api/stores', values);
+
+      toast.success('Store created successfully.');
+
+      setLoading(false);
+    } catch (error) {
+      toast.error('Something went wrong.');
+      console.log('[STORE_MODAL]', error);
+    }
   };
 
   return (
@@ -78,9 +91,10 @@ export function StoreModal() {
               />
               <div className="pt-6 space-x-2 flex items-center justify-end w-full">
                 <Button
+                  type="button"
                   disabled={loading}
                   variant={'outline'}
-                  onClick={onClose}
+                  onClick={() => onClose}
                 >
                   Cancel
                 </Button>
