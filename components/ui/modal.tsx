@@ -24,15 +24,16 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   children,
 }) => {
-  const onChange = (open: boolean) => {
-    if (!open) {
-      onClose();
-    }
-  };
+  
 
   const [initialRenderState, setinitialRenderState] = useState(<div></div>);
 
   useEffect(() => {
+    const onChange = (open: boolean) => {
+      if (!open) {
+        onClose();
+      }
+    };
     const initialRender = (
       <>
         <Dialog open={isOpen} onOpenChange={onChange}>
@@ -47,7 +48,7 @@ export const Modal: React.FC<ModalProps> = ({
       </>
     );
     setinitialRenderState(initialRender);
-  }, []);
+  }, [isOpen, title, description, children, onClose]);
 
   return initialRenderState;
 };
