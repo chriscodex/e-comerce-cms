@@ -1,7 +1,12 @@
 'use client';
 
 import { Store } from '@prisma/client';
-import { Check, ChevronsUpDown, PlusCircle, Store as StoreIcon } from 'lucide-react';
+import {
+  Check,
+  ChevronsUpDown,
+  PlusCircle,
+  Store as StoreIcon,
+} from 'lucide-react';
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 
@@ -99,11 +104,13 @@ function StoreSwitcher({ className, items = [] }: StoreSwitcherProps) {
           <CommandSeparator />
           <CommandList>
             <CommandGroup>
-              <CommandItem onSelect={() => {
-                setOpen(false);
-                storeModal.onOpen()
-              }}>
-                <PlusCircle className='mr-2 h-5 w-5'/>
+              <CommandItem
+                onSelect={() => {
+                  setOpen(false);
+                  storeModal.onOpen();
+                }}
+              >
+                <PlusCircle className="mr-2 h-5 w-5" />
                 Create Store
               </CommandItem>
             </CommandGroup>
