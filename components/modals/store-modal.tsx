@@ -16,12 +16,15 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
 export function StoreModal() {
   const { isOpen, onClose } = useStoreModal();
+  useEffect(() => {
+    console.log('isOpen', isOpen);
+  }, [isOpen])
 
   const [loading, setLoading] = useState(false);
 
@@ -68,7 +71,7 @@ export function StoreModal() {
       title="Create Store"
       description="Add a new store to manage products and categories"
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={() => onClose()}
     >
       <div>
         <div className="space-y-4 py-2 pb-4">
@@ -96,7 +99,7 @@ export function StoreModal() {
                   type="button"
                   disabled={loading}
                   variant={'outline'}
-                  onClick={() => onClose}
+                  onClick={() => onClose()}
                 >
                   Cancel
                 </Button>
