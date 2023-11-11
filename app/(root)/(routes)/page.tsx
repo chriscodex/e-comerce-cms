@@ -14,7 +14,7 @@ function SetupPage() {
     }
   }, [isOpen, onOpen]);
 
-  return <div className="p-4 bg-black">Root Page</div>;
+  return null;
 }
 
 export default SetupPage;
