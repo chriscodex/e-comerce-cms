@@ -5,10 +5,11 @@ import { ChevronsUpDown, Store as StoreIcon } from 'lucide-react';
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 
-import { Popover, PopoverTrigger } from '@/components/ui/popover';
 import { useStoreModal } from '@/hooks/use-store-modal';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Button } from '@/components/ui/button';
+import { Command, CommandEmpty, CommandInput, CommandList } from '@/components/ui/command';
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
@@ -57,6 +58,14 @@ function StoreSwitcher({ className, items = [] }: StoreSwitcherProps) {
           <ChevronsUpDown className='ml-auto h-4 w-4 shrink-0 opacity-50'/>
         </Button>
       </PopoverTrigger>
+      <PopoverContent className='w-[200px] p-0'>
+        <Command>
+          <CommandList>
+            <CommandInput placeholder='Search store ...' />
+            <CommandEmpty>No store found.</CommandEmpty>
+          </CommandList>
+        </Command>
+      </PopoverContent>
     </Popover>
   );
 }
