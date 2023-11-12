@@ -1,3 +1,9 @@
+interface SettingsPageProps {
+  params: {
+    storeId: string
+  }
+}
+
 function SettingsPage() {
   return (
     <div>
