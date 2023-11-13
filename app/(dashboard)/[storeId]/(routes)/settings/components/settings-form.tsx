@@ -1,15 +1,11 @@
 'use client';
 
-import {Store} from "@prisma/client";
+import { Store } from '@prisma/client';
 
 interface SettingsFormProps {
-  initialData: Store
+  initialData: Store;
 }
 
-export const SettingsForm = () => {
-  return (
-    <div>
-      Settings Form
-    </div>
-  )
-}
+export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
+  return <div>Settings Form</div>;
+};
