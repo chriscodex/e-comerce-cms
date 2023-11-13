@@ -12,11 +12,13 @@ interface SettingsFormProps {
 
 export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
   return (
-    <div className="flex items-center justify-between">
-      <Heading title="Settings" description="Manage store preferences" />
-      <Button variant="destructive" size="icon" onClick={() => {}}>
-        <Trash className="h-4 w-4" />
-      </Button>
-    </div>
+    <>
+      <div className="flex items-center justify-between">
+        <Heading title="Settings" description="Manage store preferences" />
+        <Button variant="destructive" size="icon" onClick={() => {}}>
+          <Trash className="h-4 w-4" />
+        </Button>
+      </div>
+    </>
   );
 };
