@@ -9,6 +9,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Heading } from '@/components/ui/heading';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { useState } from 'react';
+import { Form } from '@/components/ui/form';
 
 interface SettingsFormProps {
   initialData: Store;
@@ -21,10 +23,17 @@ const formSchema = z.object({
 type SettingsFormValues = z.infer<typeof formSchema>;
 
 export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const form = useForm<SettingsFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData,
   });
+
+  const onSubmit = async (data: SettingsFormValues) => {
+    console.log(data);
+  };
 
   return (
     <>
@@ -35,6 +44,9 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
         </Button>
       </div>
       <Separator />
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className=''></form>
+      </Form>
     </>
   );
 };
