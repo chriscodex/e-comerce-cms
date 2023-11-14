@@ -25,7 +25,6 @@ async function Navbar() {
         <MainNav className="mx-6" />
         <div className="ml-auto flex items-center scale-x-4">
           <UserButton afterSignOutUrl="/" />
-          MainNav
         </div>
       </div>
     </div>
