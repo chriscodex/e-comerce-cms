@@ -19,6 +19,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import toast from 'react-hot-toast';
 
 interface SettingsFormProps {
   initialData: Store;
@@ -40,7 +41,13 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
   });
 
   const onSubmit = async (data: SettingsFormValues) => {
-    console.log(data);
+    try {
+      setLoading(true);
+    } catch (error) {
+      toast.error('Something went wrong.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

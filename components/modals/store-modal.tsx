@@ -63,6 +63,8 @@ export function StoreModal() {
     } catch (error) {
       toast.error('Something went wrong.');
       console.log('[STORE_MODAL]', error);
+    } finally {
+      setLoading(false);
     }
   };
 
