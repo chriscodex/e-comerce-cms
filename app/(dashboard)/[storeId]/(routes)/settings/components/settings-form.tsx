@@ -61,6 +61,14 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
     }
   };
 
+  const onDelete = async () => {
+    try {
+      
+    } catch (error) {
+      toast.error('Make sure you removed all products and categories first.');
+    }
+  }
+
   return (
     <>
       <AlertModal
