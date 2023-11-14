@@ -1,3 +1,4 @@
+import { auth } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 
 export async function PATCH(
@@ -5,7 +6,11 @@ export async function PATCH(
   { params }: { params: { storeId: string } }
 ) {
   try {
-    
+    const { userId } = auth();
+
+    if (!userId) {
+      return new NextResponse('Unauthenticated', { status: 401 });
+    }
   } catch (error) {
     console.log('[STORE_PATCH]', error);
     return new NextResponse('Internal Error', { status: 500 });
