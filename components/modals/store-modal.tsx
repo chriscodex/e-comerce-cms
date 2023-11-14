@@ -22,9 +22,6 @@ import toast from 'react-hot-toast';
 
 export function StoreModal() {
   const { isOpen, onClose } = useStoreModal();
-  useEffect(() => {
-    console.log('isOpen', isOpen);
-  }, [isOpen])
 
   const [loading, setLoading] = useState(false);
 
@@ -58,15 +55,16 @@ export function StoreModal() {
       window.location.assign(`/${response.data.id}`);
 
       toast.success('Store created successfully.');
-
-      // setLoading(false);
     } catch (error) {
       toast.error('Something went wrong.');
-      console.log('[STORE_MODAL]', error);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    console.log(loading);
+  }, [loading])
 
   return (
     <Modal

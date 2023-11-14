@@ -24,8 +24,6 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   children,
 }) => {
-  
-
   const [initialRenderState, setinitialRenderState] = useState(<div></div>);
 
   useEffect(() => {
