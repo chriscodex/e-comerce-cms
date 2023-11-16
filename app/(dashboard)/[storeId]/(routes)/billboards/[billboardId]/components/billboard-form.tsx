@@ -23,7 +23,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { AlertModal } from '@/components/modals/alert-modal';
-import { ApiAlert } from '@/components/ui/api-alert';
 import { useOrigin } from '@/hooks/use-origin';
 import ImageUpload from '@/components/ui/image-upload';
 
@@ -75,6 +74,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 
       // Server component refreshed
       router.refresh();
+      router.push(`/${params.storeId}/billboards`);
       toast.success(toasMessage);
     } catch (error) {
       toast.error('Something went wrong.');
