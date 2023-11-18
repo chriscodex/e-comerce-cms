@@ -13,17 +13,21 @@ import {
 import { Button } from '@/components/ui/button';
 
 import { BillboardColumn } from './columns';
+import { useParams, useRouter } from 'next/navigation';
 
 interface CellActionColumn {
   data: BillboardColumn;
 }
 
 export const CellAction: React.FC<CellActionColumn> = ({ data }) => {
+  const router = useRouter();
+  const params = useParams();
+
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
     toast.success('Billboard Id copied to the clipboard');
   };
-  
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -38,7 +42,11 @@ export const CellAction: React.FC<CellActionColumn> = ({ data }) => {
           <Copy className="mr-2 h-4 w-4" />
           Copy Id
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() =>
+            router.push(`/${params.storeId}/billboards/${data.id}`)
+          }
+        >
           <Edit className="mr-2 h-4 w-4" />
           Update
         </DropdownMenuItem>
