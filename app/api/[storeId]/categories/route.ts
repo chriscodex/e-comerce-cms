@@ -65,15 +65,15 @@ export async function GET(
       return new NextResponse('Store ID is required', { status: 400 });
     }
 
-    const billboards = await prismadb.billboard.findMany({
+    const categories = await prismadb.category.findMany({
       where: {
         storeId: params.storeId,
       }
     });
 
-    return NextResponse.json(billboards);
+    return NextResponse.json(categories);
   } catch (error) {
-    console.log('[BILLBOARDS_GET]', error);
+    console.log('[CATEGORIES_GET]', error);
     return new NextResponse('Internal Error', { status: 500 });
   }
 }
