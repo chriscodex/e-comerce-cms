@@ -1,20 +1,29 @@
 'use client';
 
+import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react';
+import toast from 'react-hot-toast';
+
 import {
   DropdownMenuTrigger,
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
 
 import { BillboardColumn } from './columns';
-import { Button } from '@/components/ui/button';
-import { MoreHorizontal } from 'lucide-react';
 
 interface CellActionColumn {
   data: BillboardColumn;
 }
 
 export const CellAction: React.FC<CellActionColumn> = ({ data }) => {
+  const onCopy = (id: string) => {
+    navigator.clipboard.writeText(id);
+    toast.success('Billboard Id copied to the clipboard');
+  };
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -23,8 +32,20 @@ export const CellAction: React.FC<CellActionColumn> = ({ data }) => {
           <MoreHorizontal className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        
+      <DropdownMenuContent align="end">
+        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+        <DropdownMenuItem onClick={() => onCopy(data.id)}>
+          <Copy className="mr-2 h-4 w-4" />
+          Copy Id
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Edit className="mr-2 h-4 w-4" />
+          Update
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Trash className="mr-2 h-4 w-4" />
+          Delete
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
