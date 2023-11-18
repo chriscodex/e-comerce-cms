@@ -62,10 +62,6 @@ export function StoreModal() {
     }
   };
 
-  useEffect(() => {
-    console.log(loading);
-  }, [loading])
-
   return (
     <Modal
       title="Create Store"
