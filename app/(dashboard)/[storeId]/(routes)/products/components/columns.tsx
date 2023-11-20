@@ -11,9 +11,9 @@ export type ProductColumn = {
   category: string;
   size: string;
   color: string;
-  createdAt: string;
   isFeatured: boolean;
   isArchived: boolean;
+  createdAt: string;
 }
 
 export const columns: ColumnDef<ProductColumn>[] = [
